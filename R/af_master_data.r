@@ -15,8 +15,8 @@
 #'
 #' @export
 
-af_master_data <- function(api_token = getOption("apps_flyer_api_key"), app_id = getOption("apps_flyer_app_id"),
-                           from, to, groupings, kpis, filters = NULL, currency = NULL, timezone = NULL, format = NULL) {
+af_master_data <- function(api_token = api_token, app_id = app_id, from, to, groupings, kpis,
+                           filters = NULL, currency = NULL, timezone = NULL, format = NULL) {
   master_data <- GET("https://hq.appsflyer.com/export/master_report/v4",
                      query = list(api_token = api_token,
                                   app_id = app_id,
