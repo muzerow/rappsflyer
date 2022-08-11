@@ -7,5 +7,8 @@ importFrom(httr,POST)
 importFrom(httr,add_headers)
 importFrom(httr,content)
 importFrom(jsonlite,toJSON)
+<<<<<<< HEAD
 importFrom(stringr,str_c)
+=======
+>>>>>>> fdf86eef2b2d2add00f16373a63d127060438160
 importFrom(stringr,str_glue)
