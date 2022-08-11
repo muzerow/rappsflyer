@@ -30,7 +30,7 @@ af_master_data <- function(api_token = api_token, app_id = app_id, from, to, gro
                                   timezone = timezone,
                                   format = format))
 
-  if (status_code(master_data) != 200) {
+  if (master_data$status_code != 200) {
     stop(paste0("Error code ", master_data$status_code, ": ", content(master_data)))
   }
 

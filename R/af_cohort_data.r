@@ -37,7 +37,7 @@ af_cohort_data <- function(app_id, cohort_type, min_cohort_size = 1, from, to, g
                                   "Content-Type" = "application/json",
                                   "Accept" = "application/json"))
 
-  if (status_code(cohort_data) != 200) {
+  if (cohort_data$status_code != 200) {
     stop(paste0("Error code ", cohort_data$status_code, ": ", content(cohort_data)))
   }
 
