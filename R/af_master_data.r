@@ -1,6 +1,7 @@
 #' Get Data from AppsFlyer Master API
 #' @description Get Data from AppsFlyer Master API <https://support.appsflyer.com/hc/en-us/articles/213223166-Master-API-user-acquisition-metrics-via-API>
 #' @importFrom httr content GET
+#' @importFrom stringr str_c
 #'
 #' @param api_token AppsFlyer API token
 #' @param app_id AppsFlyer App ID

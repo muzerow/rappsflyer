@@ -5,8 +5,8 @@
 \title{Get Data from AppsFlyer Master API}
 \usage{
 af_master_data(
-  api_token = getOption("apps_flyer_api_key"),
-  app_id = getOption("apps_flyer_app_id"),
+  api_token = api_token,
+  app_id = app_id,
   from,
   to,
   groupings,
