@@ -2,6 +2,7 @@
 #' @description Get Data from AppsFlyer Cohort API <https://support.appsflyer.com/hc/en-us/articles/360004799057-Cohort-API>
 #' @importFrom httr add_headers content POST
 #' @importFrom jsonlite toJSON
+#' @importFrom retry retry
 #' @importFrom stringr str_glue
 #'
 #' @param app_id AppsFlyer App ID
@@ -31,6 +32,8 @@ af_cohort_data <- function(app_id, cohort_type, min_cohort_size = 1, from, to, g
                            aggregation_type = aggregation_type, per_user = per_user),
                       auto_unbox = T)
 
+  retry({
+
   cohort_data <- POST(str_glue("https://hq1.appsflyer.com/api/cohorts/v1/data/app/{app_id}?format=csv"),
                       body = json_body, encode = "raw",
                       add_headers("Authorization" = signature,
@@ -40,6 +43,12 @@ af_cohort_data <- function(app_id, cohort_type, min_cohort_size = 1, from, to, g
   if (cohort_data$status_code != 200) {
     stop(paste0("Error code ", cohort_data$status_code, ": ", content(cohort_data)))
   }
+
+  },
+
+  when = "lexical error",
+  interval  = 60,
+  max_tries = 5)
 
   content(cohort_data, as = "parsed", type = "text/csv", encoding = "UTF-8")
 }
